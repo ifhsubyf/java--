@@ -1,0 +1,32 @@
+import java.util.Scanner;
+
+//Шарыгина Надежда Б763-2
+//глава 2 вариант A
+//2. Упорядочить и вывести числа в порядке возрастания значений
+//их длины.
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Введите количество чисел n: ");
+        int n = scanner.nextInt();
+        int[] mas = new int[n];
+
+        System.out.println("введите " + n + " целых чисел:");
+        for (int i = 0; i < n; i++)
+            mas[i]=scanner.nextInt();
+        for (int i = 0; i < n; i++) {
+            for (int j=0; j<n-i-1;j++){
+                if (mas[j]>mas[j+1]) {
+                    int temp=mas[j];
+                    mas[j]=mas[j+1];
+                    mas[j+1]=temp;
+                }
+            }
+        }
+        System.out.println("отсортированный массив:");
+        for (int i = 0; i < n; i++)
+            System.out.println(mas[i]);
+        scanner.close();
+    }
+}
