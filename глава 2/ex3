@@ -1,0 +1,70 @@
+import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.List;
+
+//Шарыгина Надежда Б763-2
+//глава 2 вариант C
+//Ввести с консоли n-размерность матрицы a[n][n]. Задать значения элементов матрицы
+// в интервале значений от -n до n с помощью генератора случайных чисел.
+//11. Уплотнить матрицу, удаляя из нее строки и столбцы, заполненные нулями.
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Введите количество чисел n: ");
+        int n = scanner.nextInt();
+        int[][] mas = new int[n][n];
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                mas[i][j] = (int) (Math.random() * 100);
+//                mas[2][j]=0; для проверки
+//                mas[5][j]=0;
+            }
+            //mas[i][1]=0;
+            //mas[i][4]=0;
+        }
+        System.out.println("неотсортированный массив:");
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                System.out.printf("%3d\t", mas[i][j]);
+            }
+            System.out.println();
+        }
+        List<Integer> strok = new ArrayList<>();
+        List<Integer> stolb = new ArrayList<>();
+        for (int i = 0; i < n; i++) {
+            boolean bn = false;
+            for (int j = 0; j < n; j++) {
+                if (mas[i][j] != 0) {
+                    bn = true;
+                    break;
+                }
+            }
+            if (bn) strok.add(i);
+        }
+        for (int j = 0; j < n; j++) {
+            boolean bn1 = false;
+            for (int i = 0; i < n; i++) {
+                if (mas[i][j] != 0) {
+                    bn1 = true;
+                    break;
+                }
+            }
+            if (bn1) stolb.add(j);
+        }
+        int[][] result = new int[strok.size()][stolb.size()];
+        for (int i = 0; i < strok.size(); i++) {
+            for (int j = 0; j < stolb.size(); j++) {
+                result[i][j] = mas[strok.get(i)][stolb.get(j)];
+            }
+        }
+        System.out.println("отсортированный массив:");
+        for (int i = 0; i < strok.size(); i++) {
+            for (int j = 0; j < stolb.size(); j++) {
+                System.out.printf("%3d\t", result[i][j]);
+            }
+            System.out.println();
+        }
+        scanner.close();
+    }
+}
